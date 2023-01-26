@@ -3,8 +3,10 @@ package hw21.transport;
 import hw21.transport.Driver.DriverB;
 
 public class PassengerCar extends Transport <DriverB> implements Competing{
-    public PassengerCar(String brand, String model, double engineVolume, DriverB driver) {
+    private BodyType bodyType;
+    public PassengerCar(String brand, String model, double engineVolume, DriverB driver, BodyType bodyType) {
         super(brand, model, engineVolume, driver);
+        this.bodyType = bodyType;
     }
 
     @Override
@@ -15,6 +17,15 @@ public class PassengerCar extends Transport <DriverB> implements Competing{
     @Override
     public void finishMove() {
         System.out.println("Легковой автомобил финишировал");
+    }
+
+    @Override
+    public void printType() {
+        if (bodyType != null) {
+            System.out.println(bodyType);
+        } else {
+            System.out.println("Данных по транспортному средству недостаточно");
+        }
     }
 
     @Override
@@ -36,5 +47,13 @@ public class PassengerCar extends Transport <DriverB> implements Competing{
         int minSpeed = 90;
         int maxSpeedRound = (int) ((maxSpeed - minSpeed) + maxSpeed + Math.random());
         System.out.println("Максимальная скорость во время прохождения трассы " + maxSpeedRound);
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(BodyType bodyType) {
+        this.bodyType = bodyType;
     }
 }

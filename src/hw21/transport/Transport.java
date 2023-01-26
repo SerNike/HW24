@@ -54,6 +54,8 @@ public abstract class Transport <T extends Driver> {
 
     public abstract void startMove();
     public abstract void finishMove();
+
+    public abstract void printType();
     @Override
     public String toString() {
         return "Бренд: " + brand + ". Модель: " + model + ". Объем двигателя: " + engineVolume;

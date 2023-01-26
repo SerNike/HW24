@@ -3,9 +3,11 @@ package hw21.transport;
 import hw21.transport.Driver.DriverD;
 
 public class Bus extends Transport <DriverD> implements  Competing{
+    private NumberOfSeats numberOfSeats;
 
-    public Bus(String brand, String model, double engineVolume, DriverD driver) {
+    public Bus(String brand, String model, double engineVolume, DriverD driver, NumberOfSeats numberOfSeats) {
         super(brand, model, engineVolume, driver);
+        this.numberOfSeats = numberOfSeats;
     }
 
     @Override
@@ -19,9 +21,17 @@ public class Bus extends Transport <DriverD> implements  Competing{
     }
 
     @Override
+    public void printType() {
+        if (numberOfSeats != null) {
+            System.out.println(numberOfSeats);
+        } else {
+            System.out.println("Данных по транспортному средству недостаточно");
+        }
+    }
+
+    @Override
     public void pitStop() {
         System.out.println("Автобус совершил пит-стоп");
-
     }
 
     @Override
@@ -38,6 +48,13 @@ public class Bus extends Transport <DriverD> implements  Competing{
         int minSpeed = 60;
         int maxSpeedRound = (int) ((maxSpeed - minSpeed) + maxSpeed + Math.random());
         System.out.println("Максимальная скорость во время прохождения трассы " + maxSpeedRound);
+    }
 
+    public NumberOfSeats getNumberOfSeats() {
+        return numberOfSeats;
+    }
+
+    public void setNumberOfSeats(NumberOfSeats numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
     }
 }

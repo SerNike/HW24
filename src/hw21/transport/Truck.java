@@ -3,8 +3,10 @@ package hw21.transport;
 import hw21.transport.Driver.DriverC;
 
 public class Truck extends Transport <DriverC> implements Competing {
-    public Truck(String brand, String model, double engineVolume, DriverC driver) {
+    private LoadCapacity loadCapacity;
+    public Truck(String brand, String model, double engineVolume, DriverC driver, LoadCapacity loadCapacity) {
         super(brand, model, engineVolume, driver);
+        this.loadCapacity = loadCapacity;
     }
 
     @Override
@@ -15,6 +17,15 @@ public class Truck extends Transport <DriverC> implements Competing {
     @Override
     public void finishMove() {
         System.out.println("Грузовой автомобил финишировал");
+    }
+
+    @Override
+    public void printType() {
+        if (loadCapacity != null) {
+            System.out.println(loadCapacity);
+        } else {
+            System.out.println("Данных по транспортному средству недостаточно");
+        }
     }
 
     @Override
@@ -36,5 +47,13 @@ public class Truck extends Transport <DriverC> implements Competing {
         int minSpeed = 140;
         int maxSpeedRound = (int) ((maxSpeed - minSpeed) + maxSpeed + Math.random());
         System.out.println("Максимальная скорость во время прохождения трассы " + maxSpeedRound);
+    }
+
+    public LoadCapacity getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(LoadCapacity loadCapacity) {
+        this.loadCapacity = loadCapacity;
     }
 }
