@@ -1,4 +1,4 @@
-package hw21.transport;
+package hw21.transport.Truck;
 
 public enum LoadCapacity {
     N1(0.0f, 3.5f),

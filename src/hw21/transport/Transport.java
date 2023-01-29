@@ -2,12 +2,17 @@ package hw21.transport;
 
 import hw21.transport.Driver.Driver;
 import hw21.transport.Exeption.DiagnosticsFaliedException;
+import hw21.transport.Mechinal.Mechanic;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Transport <T extends Driver> {
     private final String brand;
     private final String model;
     private double engineVolume;
     private final T driver;
+    private final List<Mechanic> mechanics = new ArrayList<>();
 
     public static final double defaultEngineVolume = 1.5;
 
@@ -38,6 +43,10 @@ public abstract class Transport <T extends Driver> {
         return model;
     }
 
+    public List<Mechanic> getMechanics() {
+        return mechanics;
+    }
+
     public double getEngineVolume() {
         return engineVolume;
     }
@@ -55,6 +64,10 @@ public abstract class Transport <T extends Driver> {
 
     public abstract void startMove();
     public abstract void finishMove();
+
+    public void addMechanic(Mechanic mechanic) {
+        mechanics.add(mechanic);
+    }
 
     public abstract boolean passDiagnostics() throws DiagnosticsFaliedException;
 

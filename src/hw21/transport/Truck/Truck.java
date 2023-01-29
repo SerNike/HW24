@@ -1,9 +1,11 @@
-package hw21.transport;
+package hw21.transport.Truck;
 
+import hw21.transport.Competing;
 import hw21.transport.Driver.DriverC;
 import hw21.transport.Exeption.DiagnosticsFaliedException;
+import hw21.transport.Transport;
 
-public class Truck extends Transport <DriverC> implements Competing {
+public class Truck extends Transport<DriverC> implements Competing {
     private LoadCapacity loadCapacity;
     public Truck(String brand, String model, double engineVolume, DriverC driver, LoadCapacity loadCapacity) {
         super(brand, model, engineVolume, driver);

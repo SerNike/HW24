@@ -1,4 +1,4 @@
-package hw21.transport;
+package hw21.transport.Bus;
 
 public enum NumberOfSeats {
    SPECIALLY_SMALL(0, 10),

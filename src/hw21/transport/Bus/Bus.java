@@ -1,37 +1,37 @@
-package hw21.transport;
+package hw21.transport.Bus;
 
-import hw21.transport.Driver.DriverB;
+import hw21.transport.Competing;
+import hw21.transport.Driver.DriverD;
 import hw21.transport.Exeption.DiagnosticsFaliedException;
+import hw21.transport.Mechinal.Mechanic;
+import hw21.transport.Transport;
 
-public class PassengerCar extends Transport <DriverB> implements Competing{
-    private BodyType bodyType;
-    public PassengerCar(String brand, String model, double engineVolume, DriverB driver, BodyType bodyType) {
+public class Bus extends Transport<DriverD> implements Competing {
+    private NumberOfSeats numberOfSeats;
+
+    public Bus(String brand, String model, double engineVolume, DriverD driver, NumberOfSeats numberOfSeats) {
         super(brand, model, engineVolume, driver);
+        this.numberOfSeats = numberOfSeats;
     }
-
     @Override
     public void startMove() {
-        System.out.println("Легковой автомобил начал заезд");
+        System.out.println("Автобус начал заезд");
     }
 
     @Override
     public void finishMove() {
-        System.out.println("Легковой автомобил финишировал");
+        System.out.println("Автобус финишировал");
     }
 
     @Override
     public boolean passDiagnostics() throws DiagnosticsFaliedException {
-        if (getDriver() != null && getDriver().getLicense()) {
-            return true;
-        } else {
-            throw new DiagnosticsFaliedException();
-        }
+        return false;
     }
 
     @Override
     public void printType() {
-        if (bodyType != null) {
-            System.out.println(bodyType);
+        if (numberOfSeats != null) {
+            System.out.println(numberOfSeats);
         } else {
             System.out.println("Данных по транспортному средству недостаточно");
         }
@@ -39,30 +39,30 @@ public class PassengerCar extends Transport <DriverB> implements Competing{
 
     @Override
     public void pitStop() {
-        System.out.println("Легковой автомобил совершил пит стоп");
+        System.out.println("Автобус совершил пит-стоп");
     }
 
     @Override
     public void BestLapTime() {
-        int maxSpeed = 120;
-        int minSpeed = 90;
+        int maxSpeed = 90;
+        int minSpeed = 60;
         int theBestTime = (int) ((maxSpeed - minSpeed) + maxSpeed + Math.random());
         System.out.println("Лучшее время заезда " + theBestTime);
     }
 
     @Override
     public void MaxSpeed() {
-        int maxSpeed = 120;
-        int minSpeed = 90;
+        int maxSpeed = 90;
+        int minSpeed = 60;
         int maxSpeedRound = (int) ((maxSpeed - minSpeed) + maxSpeed + Math.random());
         System.out.println("Максимальная скорость во время прохождения трассы " + maxSpeedRound);
     }
 
-    public BodyType getBodyType() {
-        return bodyType;
+    public NumberOfSeats getNumberOfSeats() {
+        return numberOfSeats;
     }
 
-    public void setBodyType(BodyType bodyType) {
-        this.bodyType = bodyType;
+    public void setNumberOfSeats(NumberOfSeats numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
     }
 }

@@ -1,4 +1,4 @@
-package hw21.transport;
+package hw21.transport.Car;
 
 public enum BodyType {
     SEDAN("Седан"),
