@@ -1,6 +1,7 @@
 package hw21.transport;
 
 import hw21.transport.Driver.DriverD;
+import hw21.transport.Exeption.DiagnosticsFaliedException;
 
 public class Bus extends Transport <DriverD> implements  Competing{
     private NumberOfSeats numberOfSeats;
@@ -18,6 +19,11 @@ public class Bus extends Transport <DriverD> implements  Competing{
     @Override
     public void finishMove() {
         System.out.println("Автобус финишировал");
+    }
+
+    @Override
+    public boolean passDiagnostics() throws DiagnosticsFaliedException {
+        return false;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package hw21.transport;
 
 import hw21.transport.Driver.DriverC;
+import hw21.transport.Exeption.DiagnosticsFaliedException;
 
 public class Truck extends Transport <DriverC> implements Competing {
     private LoadCapacity loadCapacity;
@@ -17,6 +18,15 @@ public class Truck extends Transport <DriverC> implements Competing {
     @Override
     public void finishMove() {
         System.out.println("Грузовой автомобил финишировал");
+    }
+
+    @Override
+    public boolean passDiagnostics() throws DiagnosticsFaliedException {
+        if (getDriver() != null && getDriver().getLicense()) {
+            return true;
+        } else {
+            throw new DiagnosticsFaliedException();
+        }
     }
 
     @Override

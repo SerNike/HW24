@@ -1,6 +1,7 @@
 package hw21.transport;
 
 import hw21.transport.Driver.Driver;
+import hw21.transport.Exeption.DiagnosticsFaliedException;
 
 public abstract class Transport <T extends Driver> {
     private final String brand;
@@ -54,6 +55,8 @@ public abstract class Transport <T extends Driver> {
 
     public abstract void startMove();
     public abstract void finishMove();
+
+    public abstract boolean passDiagnostics() throws DiagnosticsFaliedException;
 
     public abstract void printType();
     @Override

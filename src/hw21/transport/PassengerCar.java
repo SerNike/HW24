@@ -1,12 +1,12 @@
 package hw21.transport;
 
 import hw21.transport.Driver.DriverB;
+import hw21.transport.Exeption.DiagnosticsFaliedException;
 
 public class PassengerCar extends Transport <DriverB> implements Competing{
     private BodyType bodyType;
     public PassengerCar(String brand, String model, double engineVolume, DriverB driver, BodyType bodyType) {
         super(brand, model, engineVolume, driver);
-        this.bodyType = bodyType;
     }
 
     @Override
@@ -17,6 +17,15 @@ public class PassengerCar extends Transport <DriverB> implements Competing{
     @Override
     public void finishMove() {
         System.out.println("Легковой автомобил финишировал");
+    }
+
+    @Override
+    public boolean passDiagnostics() throws DiagnosticsFaliedException {
+        if (getDriver() != null && getDriver().getLicense()) {
+            return true;
+        } else {
+            throw new DiagnosticsFaliedException();
+        }
     }
 
     @Override
