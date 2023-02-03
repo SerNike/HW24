@@ -4,20 +4,17 @@ import hw21.transport.Bus.Bus;
 import hw21.transport.Bus.NumberOfSeats;
 import hw21.transport.Car.BodyType;
 import hw21.transport.Car.PassengerCar;
-import hw21.transport.Driver.Driver;
 import hw21.transport.Driver.DriverB;
 import hw21.transport.Driver.DriverC;
 import hw21.transport.Driver.DriverD;
 import hw21.transport.Exeption.DiagnosticsFaliedException;
 import hw21.transport.Mechinal.BodyMechinal;
 import hw21.transport.Mechinal.Mechanic;
-import hw21.transport.STO;
 import hw21.transport.Transport;
 import hw21.transport.Truck.LoadCapacity;
 import hw21.transport.Truck.Truck;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -56,31 +53,32 @@ public class Main {
         passengerCar.addMechanic(mechanic2);
         passengerCar.addMechanic(mechanic5);
 
-        List<Transport<?>> bon = new ArrayList<>();
-        bon.add(passengerCar);
-        bon.add(bus);
-        bon.add(truck);
+        Set<String> set = new HashSet<>();
+        set.add("Петр Петрович");
+        set.add("Альберт Андреевич");
+        set.add("Петр Петрович");
+        set.add("Петр Петрович");
+        System.out.println(Arrays.toString(set.toArray()));
 
-        for (Transport<?> transport: bon) {
-            System.out.println(transport + " " + transport.getDriver() + " " + transport.getMechanics());
+
+
         }
+//        List<Driver> bonob = new ArrayList<>();
+//        bonob.add(driverB);
+//        bonob.add(driverD);
+//        bonob.add(driverC);
 
-        List<Driver> bonob = new ArrayList<>();
-        bonob.add(driverB);
-        bonob.add(driverD);
-        bonob.add(driverC);
 
-        STO sto = new STO();
-        sto.addTransport(bus);
-        sto.addTransport(passengerCar);
-        sto.addTransport(truck);
+//        STO sto = new STO();
+//        sto.addTransport(bus);
+//        sto.addTransport(passengerCar);
+//        sto.addTransport(truck);
 
-        sto.runTO();
-        sto.runTO();
-        sto.runTO();
+//        sto.runTO();
+//        sto.runTO();
+//        sto.runTO();
     }
     //  private static void print(Transport<?> transport) {
     //    System.out.println("Водитель " + transport.getDriver().getFullName() + " управляет автомобилем "
     //          + transport.getBrand() + " и будет участвовать в заезде");
     // }
-}
