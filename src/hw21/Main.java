@@ -4,12 +4,14 @@ import hw21.transport.Bus.Bus;
 import hw21.transport.Bus.NumberOfSeats;
 import hw21.transport.Car.BodyType;
 import hw21.transport.Car.PassengerCar;
+import hw21.transport.Driver.Driver;
 import hw21.transport.Driver.DriverB;
 import hw21.transport.Driver.DriverC;
 import hw21.transport.Driver.DriverD;
 import hw21.transport.Exeption.DiagnosticsFaliedException;
 import hw21.transport.Mechinal.BodyMechinal;
 import hw21.transport.Mechinal.Mechanic;
+import hw21.transport.STO;
 import hw21.transport.Transport;
 import hw21.transport.Truck.LoadCapacity;
 import hw21.transport.Truck.Truck;
@@ -20,7 +22,7 @@ public class Main {
     public static void main(String[] args) {
         DriverB driverB = new DriverB("Иван Иванович Иванов", true, 5);
         DriverC driverC = new DriverC("Петр Петрович Петров", true, 2);
-        DriverD driverD = new DriverD("Роман романович Романов", true, 1);
+        DriverD driverD = new DriverD("Роман Романович Романов", true, 1);
         PassengerCar passengerCar = new PassengerCar("BMV", "E6", 3.0, driverB, BodyType.SEDAN);
         PassengerCar passengerCar2 = new PassengerCar("BMV", "E6", 3.0, null, BodyType.SEDAN);
         Truck truck = new Truck("Камаз", "6520", 5.0, driverC, LoadCapacity.N2);
@@ -53,32 +55,43 @@ public class Main {
         passengerCar.addMechanic(mechanic2);
         passengerCar.addMechanic(mechanic5);
 
-        Set<String> set = new HashSet<>();
-        set.add("Петр Петрович");
-        set.add("Альберт Андреевич");
-        set.add("Петр Петрович");
-        set.add("Петр Петрович");
-        System.out.println(Arrays.toString(set.toArray()));
+        List<Driver> drivers = new ArrayList<>();
+        drivers.add(driverB);
+        drivers.add(driverC);
+        drivers.add(driverD);
 
+        List<Transport<?>> racers = new ArrayList<>();
+        racers.add(passengerCar);
+        racers.add(bus);
+        racers.add(truck);
 
-
+        for (Transport<?> transport: racers) {
+            System.out.println(transport + " " + transport.getDriver() + " " + transport.getMechanics());
         }
-//        List<Driver> bonob = new ArrayList<>();
-//        bonob.add(driverB);
-//        bonob.add(driverD);
-//        bonob.add(driverC);
-
-
-//        STO sto = new STO();
-//        sto.addTransport(bus);
-//        sto.addTransport(passengerCar);
-//        sto.addTransport(truck);
+        STO sto = new STO();
+        sto.addTransport(passengerCar);
+        sto.addTransport(bus);
+        sto.addTransport(truck);
 
 //        sto.runTO();
 //        sto.runTO();
 //        sto.runTO();
-    }
-    //  private static void print(Transport<?> transport) {
-    //    System.out.println("Водитель " + transport.getDriver().getFullName() + " управляет автомобилем "
-    //          + transport.getBrand() + " и будет участвовать в заезде");
-    // }
+
+
+        Map<Transport<?>, Mechanic> transportMechanicMap = new HashMap<>();
+        for (Transport<?> racer : racers) {
+            for (Mechanic mechanic: racer.getMechanics()) {
+                transportMechanicMap.put(racer, mechanic);
+            }
+        }
+        System.out.println(transportMechanicMap);
+        System.out.println();
+        for (Map.Entry<Transport<?>, Mechanic> entry : transportMechanicMap.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
+        }
+      private static void print(Transport<?> transport) {
+        System.out.println("Водитель " + transport.getDriver().getFullName() + " управляет автомобилем "
+              + transport.getBrand() + " и будет участвовать в заезде");
+     }
+}

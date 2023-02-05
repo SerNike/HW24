@@ -56,6 +56,9 @@ public abstract class Transport <T extends Driver> {
             this.engineVolume = engineVolume;
         }
     }
+    public Set<Mechanic>  getMechanic() {
+        return mechanics;
+    }
 
     public T getDriver() {
         return driver;

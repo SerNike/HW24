@@ -5,6 +5,8 @@ import hw21.transport.Driver.DriverB;
 import hw21.transport.Exeption.DiagnosticsFaliedException;
 import hw21.transport.Transport;
 
+import java.util.Objects;
+
 public class PassengerCar extends Transport<DriverB> implements Competing {
     private BodyType bodyType;
     public PassengerCar(String brand, String model, double engineVolume, DriverB driver, BodyType bodyType) {
@@ -66,5 +68,19 @@ public class PassengerCar extends Transport<DriverB> implements Competing {
 
     public void setBodyType(BodyType bodyType) {
         this.bodyType = bodyType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        PassengerCar that = (PassengerCar) o;
+        return bodyType == that.bodyType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), bodyType);
     }
 }

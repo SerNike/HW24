@@ -1,5 +1,7 @@
 package hw21.transport.Mechinal;
 
+import java.util.Objects;
+
 public class Mechanic {
     private String fullNameMechanic;
     private String companyWorks;
@@ -49,5 +51,18 @@ public class Mechanic {
                 ", companyWorks='" + companyWorks + '\'' +
                 ", bodyMechinal=" + bodyMechinal +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mechanic mechanic = (Mechanic) o;
+        return Objects.equals(fullNameMechanic, mechanic.fullNameMechanic) && Objects.equals(companyWorks, mechanic.companyWorks) && bodyMechinal == mechanic.bodyMechinal;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullNameMechanic, companyWorks, bodyMechinal);
     }
 }

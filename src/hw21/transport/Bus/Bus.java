@@ -6,6 +6,8 @@ import hw21.transport.Exeption.DiagnosticsFaliedException;
 import hw21.transport.Mechinal.Mechanic;
 import hw21.transport.Transport;
 
+import java.util.Objects;
+
 public class Bus extends Transport<DriverD> implements Competing {
     private NumberOfSeats numberOfSeats;
 
@@ -64,5 +66,19 @@ public class Bus extends Transport<DriverD> implements Competing {
 
     public void setNumberOfSeats(NumberOfSeats numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Bus bus = (Bus) o;
+        return numberOfSeats == bus.numberOfSeats;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), numberOfSeats);
     }
 }

@@ -5,6 +5,8 @@ import hw21.transport.Driver.DriverC;
 import hw21.transport.Exeption.DiagnosticsFaliedException;
 import hw21.transport.Transport;
 
+import java.util.Objects;
+
 public class Truck extends Transport<DriverC> implements Competing {
     private LoadCapacity loadCapacity;
     public Truck(String brand, String model, double engineVolume, DriverC driver, LoadCapacity loadCapacity) {
@@ -67,5 +69,19 @@ public class Truck extends Transport<DriverC> implements Competing {
 
     public void setLoadCapacity(LoadCapacity loadCapacity) {
         this.loadCapacity = loadCapacity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Truck truck = (Truck) o;
+        return loadCapacity == truck.loadCapacity;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), loadCapacity);
     }
 }

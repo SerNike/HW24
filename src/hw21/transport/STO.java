@@ -17,14 +17,15 @@ public class STO {
         }
     }
 
-//    public void runTO() {
-//        Transport<?> transport = transportQueue.poll();
-//        if (transport != null) {
-//            try {
-//                transport.passDiagnostics();
-//            } catch (DiagnosticsFaliedException e) {
-//                System.out.println("Ошибка проведения СТО" + transport);
-//            }
-//        }
-//    }
+    public void runTO() {
+        Transport<?> transport = transportQueue.poll();
+        if (transport != null) {
+            try {
+                transport.passDiagnostics();
+                transport.getMechanic().iterator().next().maintenance();
+            } catch (DiagnosticsFaliedException e) {
+                System.out.println("Ошибка проведения СТО" + transport);
+            }
+        }
+    }
 }
