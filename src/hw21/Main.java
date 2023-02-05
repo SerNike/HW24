@@ -65,7 +65,7 @@ public class Main {
         racers.add(bus);
         racers.add(truck);
 
-        for (Transport<?> transport: racers) {
+        for (Transport<?> transport : racers) {
             System.out.println(transport + " " + transport.getDriver() + " " + transport.getMechanics());
         }
         STO sto = new STO();
@@ -80,7 +80,7 @@ public class Main {
 
         Map<Transport<?>, Mechanic> transportMechanicMap = new HashMap<>();
         for (Transport<?> racer : racers) {
-            for (Mechanic mechanic: racer.getMechanics()) {
+            for (Mechanic mechanic : racer.getMechanics()) {
                 transportMechanicMap.put(racer, mechanic);
             }
         }
@@ -89,9 +89,17 @@ public class Main {
         for (Map.Entry<Transport<?>, Mechanic> entry : transportMechanicMap.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue());
         }
+        Set<Driver> setDriver = new HashSet<>(drivers);
+        System.out.println(setDriver);
+
+        Iterator<Driver> driverInteger = setDriver.iterator();
+        while (driverInteger.hasNext()) {
+            System.out.println(driverInteger.next());
         }
-      private static void print(Transport<?> transport) {
+    }
+
+    private static void print(Transport<?> transport) {
         System.out.println("Водитель " + transport.getDriver().getFullName() + " управляет автомобилем "
-              + transport.getBrand() + " и будет участвовать в заезде");
-     }
+                + transport.getBrand() + " и будет участвовать в заезде");
+    }
 }
